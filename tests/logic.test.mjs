@@ -286,6 +286,9 @@ describe('game simulation', () => {
       game.streak = i;
       const enemy = createEnemy('grunt', 120, 120);
       enemy.hp = 1;
+      // Pin the drift so the enemy stays where the bullet is injected.
+      enemy.amplitude = 0;
+      enemy.phase = 0;
       game.enemies.push(enemy);
       game.bullets.push({
         x: enemy.x,
