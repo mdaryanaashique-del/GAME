@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+<meta name="theme-color" content="#05060f" />
+<meta name="description" content="Neon Surge — a fast, neon-soaked arcade space shooter you can play in your browser." />
+<title>Neon Surge — Arcade Space Shooter</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305060f'/%3E%3Cpath d='M32 10l14 36-14-9-14 9z' fill='%2300f0ff'/%3E%3C/svg%3E" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div id="app">
+  <canvas id="game" aria-label="Neon Surge game field"></canvas>
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <header id="hud" aria-live="off">
+    <div class="hud-block">
+      <span class="hud-label">Score</span>
+      <span class="hud-value" id="hud-score">000000</span>
+    </div>
+    <div class="hud-block hud-center">
+      <span class="hud-label">Wave</span>
+      <span class="hud-value" id="hud-wave">1</span>
+    </div>
+    <div class="hud-block hud-right">
+      <span class="hud-label">Best</span>
+      <span class="hud-value dim" id="hud-best">000000</span>
+    </div>
+  </header>
+
+  <div id="hud-secondary">
+    <div class="lives" id="hud-lives" aria-label="Lives remaining">
+      <span class="life"></span><span class="life"></span><span class="life"></span>
+    </div>
+    <div class="powerups" id="hud-powerups"></div>
+    <div class="combo" id="hud-combo"></div>
+  </div>
+
+  <div id="wave-banner" class="wave-banner" aria-hidden="true"></div>
+
+  <div class="overlay" id="screen-title">
+    <div class="panel title-panel">
+      <p class="eyebrow">Arcade Protocol // Sector 07</p>
+      <h1 class="logo">
+        <span>NEON</span>
+        <span class="logo-accent">SURGE</span>
+      </h1>
+      <p class="tagline">Survive the swarm. Bank the combo. Break the grid.</p>
+
+      <button class="btn btn-primary" id="btn-play" type="button">
+        <span>Start Run</span>
+      </button>
+
+      <div class="title-grid">
+        <div class="info-card">
+          <h2>Controls</h2>
+          <ul class="key-list">
+            <li><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> <span>or arrows to fly</span></li>
+            <li><kbd>Drag</kbd> <span>touch / mouse steering</span></li>
+            <li><kbd>P</kbd><span>pause the run</span></li>
+            <li><span class="auto">Cannons fire automatically</span></li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h2>Top Pilots</h2>
+          <ol class="score-list" id="title-scores">
+            <li class="empty">No runs logged yet</li>
+          </ol>
+        </div>
+      </div>
+
+      <p class="hint">Tip: chain kills within 2.5s to stack a score multiplier up to ×5.</p>
+    </div>
+  </div>
+
+  <div class="overlay hidden" id="screen-pause">
+    <div class="panel compact">
+      <p class="eyebrow">Run suspended</p>
+      <h2 class="panel-title">PAUSED</h2>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="btn-resume" type="button">Resume</button>
+        <button class="btn btn-ghost" id="btn-quit" type="button">Abandon</button>
+      </div>
+      <p class="hint">Press <kbd>P</kbd> to jump back in.</p>
+    </div>
+  </div>
+
+  <div class="overlay hidden" id="screen-over">
+    <div class="panel compact">
+      <p class="eyebrow">Signal lost</p>
+      <h2 class="panel-title">GAME OVER</h2>
+      <div class="result-grid">
+        <div><span class="result-label">Score</span><strong class="result-value" id="over-score">0</strong></div>
+        <div><span class="result-label">Wave</span><strong class="result-value" id="over-wave">1</strong></div>
+        <div><span class="result-label">Kills</span><strong class="result-value" id="over-kills">0</strong></div>
+      </div>
+      <p class="new-best hidden" id="over-best">New personal best!</p>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="btn-again" type="button">Fly Again</button>
+      </div>
+      <ol class="score-list mini" id="over-scores"></ol>
+    </div>
+  </div>
+
+  <button class="icon-btn" id="btn-mute" type="button" aria-label="Toggle sound" aria-pressed="true">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="wave" d="M16 8.5a5 5 0 010 7"/><path class="wave" d="M18.5 6a8.5 8.5 0 010 12"/></svg>
+  </button>
+</div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
