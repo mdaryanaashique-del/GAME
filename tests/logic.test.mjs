@@ -378,6 +378,8 @@ describe('game simulation', () => {
     const game = new Game({ width: 600, height: 800 });
     game.start();
     game.beginWave(5);
+    // Suppress auto-fire so the boss reaches the field at full health.
+    game.player.fireTimer = 1e9;
     for (let i = 0; i < 40; i += 1) step(game, 0.05);
     const boss = game.enemies.find((e) => e.type === 'boss');
     assert.ok(boss, 'expected a boss to spawn');
