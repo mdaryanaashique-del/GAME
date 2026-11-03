@@ -1,0 +1,22 @@
+{
+  "name": "neon-surge",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Neon Surge — a fast neon arcade space shooter that runs in the browser.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node --test tests/"
+  },
+  "keywords": [
+    "game",
+    "arcade",
+    "canvas",
+    "shooter"
+  ],
+  "license": "MIT"
+}
