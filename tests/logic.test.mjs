@@ -392,6 +392,10 @@ describe('game simulation', () => {
     game.start();
     game.beginWave(5);
     game._spawnBoss();
+    // Place the boss inside the field: bullets spawned above the top edge are culled.
+    game.boss.x = game.width / 2;
+    game.boss.y = 120;
+    game.boss.entered = true;
     game.boss.hp = 1;
     game.bullets.push({
       x: game.boss.x,
