@@ -276,7 +276,13 @@ describe('game simulation', () => {
   it('stacks the combo multiplier on a kill streak', () => {
     const game = new Game({ width: 600, height: 800 });
     game.start();
+    // Isolate the scenario: no random spawns or stray bullets steal the hits.
+    game.spawnLeft = 0;
+    game.waveActive = false;
     for (let i = 0; i < 4; i += 1) {
+      game.enemies.length = 0;
+      game.bullets.length = 0;
+      game.enemyBullets.length = 0;
       game.streak = i;
       const enemy = createEnemy('grunt', 120, 120);
       enemy.hp = 1;
